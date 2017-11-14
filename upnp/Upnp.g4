@@ -35,13 +35,11 @@ searchCrit : searchExp | ASTERISK ;
 searchExp : relExp | searchExp WCHAR+ LOGOP WCHAR+ searchExp | '(' WCHAR* searchExp WCHAR* ')'  ;
 relExp : PROPERTY WCHAR+ BINOP WCHAR+ quotedVal | PROPERTY WCHAR+ EXISTSOP WCHAR+ BOOLVAL ;
 quotedVal : DQUOTE escapedQuote DQUOTE ;
-escapedQuote :   STRING_LITERAL* WCHAR* STRING_LITERAL*;
+escapedQuote :   STRING_LITERAL+ | escapedQuote WCHAR* escapedQuote;
  
 /*
  * Lexer Rules
  */
- 
-NUMBER     : [0-9]+ ;
  
 WHITESPACE : [\r\t\n] -> skip ;
 
@@ -82,4 +80,4 @@ HTAB 		 :	 '\t' ;
 SPACE        :   ' '  ;      
 DQUOTE       :   '"' ;    
 ASTERISK     :   '*'  ;
-STRING_LITERAL : [a-zA-Z.] | '\\"';  
+STRING_LITERAL : [a-zA-Z.0-9] | '\\"';  
