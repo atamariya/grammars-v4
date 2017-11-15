@@ -33,9 +33,7 @@ grammar Upnp;
  
 searchCrit : searchExp | ASTERISK ;
 searchExp : relExp | searchExp WCHAR+ LOGOP WCHAR+ searchExp | '(' WCHAR* searchExp WCHAR* ')'  ;
-relExp : PROPERTY WCHAR+ BINOP WCHAR+ quotedVal | PROPERTY WCHAR+ EXISTSOP WCHAR+ BOOLVAL ;
-quotedVal : DQUOTE escapedQuote DQUOTE ;
-escapedQuote :   STRING_LITERAL+ | escapedQuote WCHAR* escapedQuote;
+relExp : PROPERTY WCHAR+ BINOP WCHAR+ QUOTEDVAL | PROPERTY WCHAR+ EXISTSOP WCHAR+ BOOLVAL ;
  
 /*
  * Lexer Rules
@@ -80,4 +78,7 @@ HTAB 		 :	 '\t' ;
 SPACE        :   ' '  ;      
 DQUOTE       :   '"' ;    
 ASTERISK     :   '*'  ;
-STRING_LITERAL : [a-zA-Z.0-9] | '\\"';  
+QUOTEDVAL    : DQUOTE STRING_LITERAL DQUOTE ;
+
+fragment STRING_LITERAL : ([a-zA-Z.0-9 ] | '\\"')+;
+
