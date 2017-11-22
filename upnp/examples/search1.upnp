@@ -1,1 +1,1 @@
-(upnp:class = "object.container.album.musicAlbum" and dc:title contains "1 and cap \"a\"")
+(upnp:class = "object.container.album.musicAlbum" and dc:title contains "1 a-zA-Z0-9 .'&:,! and cap \"a\"")

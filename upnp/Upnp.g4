@@ -80,5 +80,4 @@ DQUOTE       :   '"' ;
 ASTERISK     :   '*'  ;
 QUOTEDVAL    : DQUOTE STRING_LITERAL DQUOTE ;
 
-fragment STRING_LITERAL : ([a-zA-Z.0-9 ] | '\\"')+;
-
+fragment STRING_LITERAL : (~["] | '\\"')+;
